@@ -14,10 +14,26 @@ func main () {
 	for i:=0;i<100;i++{
 		fmt.Println(arr[i])
 	}
-
+	fmt.Println("Is 45 in the list? ", binarySearch(arr, 45))
 
 }
 
+
+func binarySearch(array [] int, value int) int {
+	pivot, start, end := len(array)/2, 0, len(array)-1
+	for start <= pivot && pivot <= end {
+		if array[pivot] == value {
+			return pivot
+		} else if array[pivot] < value {
+			start = pivot + 1
+			pivot = (start + end) / 2
+		} else {
+			end = pivot - 1
+			pivot = (start + end) / 2
+		}
+	} 
+	return -1
+}
 
 func partition(array []int, start int, end int) int {
 	pivot := array[end]
